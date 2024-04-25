@@ -46,7 +46,7 @@ class Product extends Model
             {
                 unlink(self::$product->image);
             }
-            self::$imageUrl=self::getImageUrl($request,'storage/public/');
+            self::$imageUrl=self::getImageUrl($request);
         }
         else
         {

@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label for="formrow-password-input">Product Image</label>
                                  <input type="file" name="image"  class="form-control-file" id="formrow-password-input">
-                                 <img src="{{asset($products-> image)}}" class="mt-2" alt="" height="150" width="200" />
+                                 <img src="{{asset('storage/'.$products-> image)}}" class="mt-2" alt="" height="150" width="200" />
                             </div>
                         </div>
                         <div class="mt-2">

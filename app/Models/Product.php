@@ -8,20 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     private static $image,$imageUrl,$product,$imageName,$directory,$extention;
-    public static function getImageUrl($request,$directory)
+
+    public static function getImageUrl($request)
     {
         self::$image        = $request->file('image');
         self::$extention    = self::$image->getClientOriginalName();
         self::$imageName    = 'product_'.time().'.'.self::$extention;
-        self::$image->move($directory,self::$imageName);
-        return $directory.self::$imageName;
+        self::$image->storeAs('public', self::$imageName);
+        //self::$image->move($directory,self::$imageName);
+        return self::$imageName;
     }
+    
     public static function newProduct($request){
         self::$product = new product();
         self::$product->title= $request->title;
         self::$product->fee = $request->fee;
         self::$product->description = $request->description;
-        self::$product->image = self::getImageUrl($request,'images/product/');
+        self::$product->image = self::getImageUrl($request);
         self::$product->save();
     }
 
@@ -43,7 +46,7 @@ class Product extends Model
             {
                 unlink(self::$product->image);
             }
-            self::$imageUrl=self::getImageUrl($request,'images/product/');
+            self::$imageUrl=self::getImageUrl($request,'storage/public/');
         }
         else
         {

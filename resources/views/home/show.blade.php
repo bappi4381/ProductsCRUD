@@ -36,10 +36,10 @@
                                 <td>{{$product->title}}</td>
                                 <td>{{$product->fee}}</td>
                                 <td>
-                                    <img src="{{asset($product->image)}}"width ="70px"alt="">
+                                    <img src="{{asset('storage/'.$product->image) }}"width ="70px"alt="">
                                 </td>
                                 <td>{{$product->description}}</td>
-                                
+                               
                                 <td>
                                     <a href="{{route('product.edit',['id'=> $product->id])}}" class="btn btn-primary" title="View Course Details">
                                         Edit
